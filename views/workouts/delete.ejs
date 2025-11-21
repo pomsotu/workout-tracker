@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<h1 class="mb-4 text-danger">Delete Workout</h1>
+
+<p>Are you sure you want to delete this workout?</p>
+
+<ul class="list-group mb-3">
+    <li class="list-group-item"><strong>Exercise:</strong> <%= workout.name %></li>
+    <li class="list-group-item"><strong>Muscle Group:</strong> <%= workout.muscleGroup %></li>
+    <li class="list-group-item"><strong>Sets:</strong> <%= workout.sets %></li>
+    <li class="list-group-item"><strong>Reps:</strong> <%= workout.reps %></li>
+    <li class="list-group-item"><strong>Date:</strong> <%= workout.date.toISOString().slice(0, 10) %></li>
+</ul>
+
+<form action="/workouts/<%= workout._id %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="/workouts" class="btn btn-secondary">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %>

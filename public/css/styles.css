@@ -1,0 +1,18 @@
+body {
+    background-color: #f5f7fa;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
