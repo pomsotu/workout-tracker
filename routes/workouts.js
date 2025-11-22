@@ -6,8 +6,13 @@ const Workout = require('../models/Workout');
 
 // GET all workouts (List)
 router.get('/', async (req, res) => {
-    const workouts = await Workout.find().sort({ date: -1 });
-    res.render('workouts/list', { workouts });
+    try {
+        const workouts = await Workout.find().sort({ date: -1 });
+        res.render('workouts/list', { workouts });
+    } catch (err) {
+        console.error('Error fetching workouts:', err);
+        res.send('Error fetching workouts');
+    }
 });
 
 // NEW workout form
