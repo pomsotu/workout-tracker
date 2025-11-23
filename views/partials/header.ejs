@@ -16,13 +16,23 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-custom mb-4">
         <div class="container">
             <a class="navbar-brand" href="/">Workout Tracker</a>
 
-            <div>
-                <a class="nav-link d-inline text-white" href="/workouts">View Workouts</a>
-                <a class="nav-link d-inline text-white" href="/workouts/new">Add Workout</a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/workouts">View Workouts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/workouts/new">Add Workout</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
