@@ -17,24 +17,39 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="/">Workout Tracker</a>
+      <div class="container">
+        <a class="navbar-brand" href="/">Workout Tracker</a>
 
-            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/workouts">View Workouts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/workouts/new">Add Workout</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/workouts">View Workouts</a>
+            </li>
+
+            <% if (currentUser) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/workouts/new">Add Workout</a>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link disabled">
+                  <%= currentUser.displayName || currentUser.username %>
+                </span>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/logout">Logout</a>
+              </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/login">Login</a>
+              </li>
+            <% } %>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <div class="container">

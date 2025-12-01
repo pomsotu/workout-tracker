@@ -1,0 +1,53 @@
+<%- include('../partials/header') %>
+
+<main class="container mt-5">
+  <% if (message && message.length > 0) { %>
+    <div class="alert alert-danger">
+      <%= message %>
+    </div>
+  <% } %>
+
+  <div class="row">
+    <div class="offset-md-4 col-md-4">
+      <h1>Please login</h1>
+
+      <form method="post" autocomplete="off">
+        <fieldset class="form-group mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="Enter username"
+            id="username"
+            required
+            autofocus
+          >
+        </fieldset>
+
+        <fieldset class="form-group mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Enter password"
+            id="password"
+            required
+          >
+          <small class="form-text text-muted">
+            Don't have an account?
+            <a href="/auth/register">Register here</a>
+          </small>
+        </fieldset>
+
+        <fieldset class="form-group text-end">
+          <input type="submit" class="btn btn-success" value="Login">
+          <a href="/" class="btn btn-warning">Cancel</a>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

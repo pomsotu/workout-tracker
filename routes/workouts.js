@@ -4,6 +4,15 @@ const express = require('express');
 const router = express.Router();
 const Workout = require('../models/Workout');
 
+// Middleware: ensure user is authenticated
+function ensureAuth(req, res, next) {
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    return next();
+  }
+  // Not logged in → redirect to login page
+  res.redirect('/auth/login');
+}
+
 // GET all workouts (List)
 router.get('/', async (req, res) => {
     try {
@@ -16,12 +25,12 @@ router.get('/', async (req, res) => {
 });
 
 // NEW workout form
-router.get('/new', (req, res) => {
+router.get('/new', ensureAuth, (req, res) => {
     res.render('workouts/new');
 });
 
 // CREATE new workout (handles form submission)
-router.post('/', async (req, res) => {
+router.post('/', ensureAuth, async (req, res) => {
     try {
         const { name, muscleGroup, sets, reps, date } = req.body;
 
@@ -43,7 +52,7 @@ router.post('/', async (req, res) => {
 });
 
 // EDIT form for a specific workout
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', ensureAuth, async (req, res) => {
     try {
         const workout = await Workout.findById(req.params.id);
         if (!workout) {
@@ -57,7 +66,7 @@ router.get('/:id/edit', async (req, res) => {
 });
 
 // UPDATE a specific workout
-router.put('/:id', async (req, res) => {
+router.put('/:id', ensureAuth, async (req, res) => {
     try {
         const { name, muscleGroup, sets, reps, date } = req.body;
 
@@ -77,7 +86,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE confirmation page
-router.get('/:id/delete', async (req, res) => {
+router.get('/:id/delete', ensureAuth, async (req, res) => {
     try {
         const workout = await Workout.findById(req.params.id);
         if (!workout) {
@@ -91,7 +100,7 @@ router.get('/:id/delete', async (req, res) => {
 });
 
 // DELETE a specific workout
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', ensureAuth, async (req, res) => {
     try {
         await Workout.findByIdAndDelete(req.params.id);
         res.redirect('/workouts');
